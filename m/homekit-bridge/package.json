@@ -1,0 +1,32 @@
+{
+  "name": "homekit-bridge",
+  "description": "HomeKit support for MIIO",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "DEBUG=* ./bin/homebridge"
+  },
+  "author": {
+    "name": "Miwifi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.n.xiaomi.com:zhangyanlu/homekit-bridge.git"
+  },
+  "bugs": {
+    "url": "http://git.n.xiaomi.com/zhangyanlu/homekit-bridge/issues"
+  },
+  "license": "MIT",
+  "bin": {
+    "homebridge": "bin/homekitbridge"
+  },
+  "engines": {
+    "node": ">=0.10.24"
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "hap-nodejs": "0.3.2",
+    "request": "^2.72.0"
+  },
+
+  "gypfile": true
+}

@@ -1,0 +1,16 @@
+plugin_id = "2882303761517487889";
+name = "Homekit助手";
+introduction = "将支持米家的设备桥接为Homekit设备";
+summary = "将支持米家的设备桥接为Homekit设备";
+market_icon = "http://file.market.xiaomi.com/download/AppStore/07ca3e47713a948300018935a2b220d6a2db85475";
+installed_icon = "http://file.market.xiaomi.com/download/AppStore/04d4c53f00118513a1b7d26285f536825934322a7";
+detail_image = "http://file.market.xiaomi.com/download/AppStore/06e935177422e27f182090742a4c478da5a415bb4";
+developer = "zyanlu";
+version = "1.1.2";
+control_url = "http://home.mi.com/miwifi/homekit.html";
+sdk_level = "2";
+supported_rom = "miwifi_rom";
+small_icon = "http://file.market.xiaomi.com/download/AppStore/07ca3e47713a948300018935a2b220d6a2db85475";
+large_icon = "http://file.market.xiaomi.com/download/AppStore/04d4c53f00118513a1b7d26285f536825934322a7";
+manifest_version = "1";
+capability_list = [ "access_userdata" ];

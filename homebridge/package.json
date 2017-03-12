@@ -1,0 +1,65 @@
+{
+  "name": "homebridge",
+  "description": "HomeKit support for the impatient",
+  "version": "0.4.16",
+  "scripts": {
+    "dev": "DEBUG=* ./bin/homebridge -D -P example-plugins/ || true"
+  },
+  "author": {
+    "name": "Nick Farina"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nfarina/homebridge.git"
+  },
+  "bugs": {
+    "url": "http://github.com/nfarina/homebridge/issues"
+  },
+  "license": "ISC",
+  "bin": {
+    "homebridge": "bin/homebridge"
+  },
+  "engines": {
+    "node": ">=4.3.2"
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "commander": "2.8.1",
+    "hap-nodejs": "0.4.20",
+    "semver": "5.0.3",
+    "node-persist": "^0.0.8"
+  },
+  "gitHead": "600760884d3f4641651fc454f39fe7e5daac3085",
+  "homepage": "https://github.com/nfarina/homebridge#readme",
+  "_id": "homebridge@0.4.16",
+  "_shasum": "b96e8eaede4c7d496c008eaddab9a47810dd90a7",
+  "_from": "homebridge@latest",
+  "_npmVersion": "3.10.9",
+  "_nodeVersion": "7.1.0",
+  "_npmUser": {
+    "name": "khaost",
+    "email": "khaos.tian@gmail.com"
+  },
+  "dist": {
+    "shasum": "b96e8eaede4c7d496c008eaddab9a47810dd90a7",
+    "tarball": "https://registry.npmjs.org/homebridge/-/homebridge-0.4.16.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "khaost",
+      "email": "khaos.tian@gmail.com"
+    },
+    {
+      "name": "nfarina",
+      "email": "nfarina@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/homebridge-0.4.16.tgz_1481615429520_0.46801829617470503"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/homebridge/-/homebridge-0.4.16.tgz",
+  "readme": "ERROR: No README data found!"
+}

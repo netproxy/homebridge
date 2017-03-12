@@ -1,0 +1,51 @@
+{
+  "deviceType": "YeelinkLightBslamp1",
+  "services": [
+    {
+      "name": "Lightbulb",
+      "characteristics": [
+        {
+          "name": "On",
+          "set": {
+            "values": [
+              {
+                "value": 1,
+                "miot_method": "set_power",
+                "miot_params": ["on"]
+              },
+              {
+                "value": 0,
+                "miot_method": "set_power",
+                "miot_params": ["off"]
+              }
+            ]
+          },
+          "get": {
+            "values": [
+              {
+                "value": 1,
+                "miot_result": "on"
+              },
+              {
+                "value": 0,
+                "miot_result": "off"
+              }
+            ],
+            "miot_method": "get_prop",
+            "miot_params": ["power"]
+          }
+        },
+      {
+        "name": "Brightness",
+        "set": {
+          "miot_method": "set_bright"
+        },
+        "get": {
+          "miot_method": "get_prop",
+          "miot_params": ["bright"]
+          }
+        }
+      ]
+    }
+  ]
+}

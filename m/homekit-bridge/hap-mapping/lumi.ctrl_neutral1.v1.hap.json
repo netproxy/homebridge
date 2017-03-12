@@ -1,0 +1,41 @@
+{
+  "deviceType": "LumiCtrlNeutral1",
+  "services": [
+    {
+      "name": "Switch",
+      "characteristics": [
+        {
+          "name": "On",
+          "set": {
+            "values": [
+              {
+                "value": 1,
+                "miot_method": "toggle_ctrl_neutral",
+                "miot_params": "[\"neutral_0\", \"on\"]"
+              },
+              {
+                "value": 0,
+                "miot_method": "toggle_ctrl_neutral",
+                "miot_params": "[\"neutral_0\", \"off\"]"
+              }
+            ]
+          },
+          "get": {
+            "values": [
+              {
+                "value": 1,
+                "miot_result": "on"
+              },
+              {
+                "value": 0,
+                "miot_result": "off"
+              }
+            ],
+            "miot_method": "get_prop_ctrl_neutral",
+            "miot_params": ""
+          }
+        }
+      ]
+    }
+  ]
+}

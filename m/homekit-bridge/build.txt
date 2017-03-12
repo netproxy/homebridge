@@ -1,0 +1,4 @@
+make: Entering directory '/usr/local/lib/m/homekit-bridge/build'
+  CXX(target) Release/obj.target/miio/src/miio.o
+miio.target.mk:94: recipe for target 'Release/obj.target/miio/src/miio.o' failed
+make: Leaving directory '/usr/local/lib/m/homekit-bridge/build'

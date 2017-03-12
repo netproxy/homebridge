@@ -1,0 +1,13 @@
+MKDIR /var/run/avahi-daemon
+MKDIR /var/run/dbus/
+
+MKDIR /etc/dbus-1/system.d
+MKDIR /etc/avahi/services/
+
+MKDIR /var/lock
+
+RUN ./homekit_plugin
+
+
+
+

@@ -1,0 +1,17 @@
+{
+  "deviceType": "ZhimiAirpurifierM1",
+  "services": [
+    {
+      "name": "AirQualitySensor",
+      "characteristics": [
+        {
+          "name": "AirQuality",
+          "get": {
+            "miot_method": "get_prop",
+            "miot_params": ["aqi"]
+          }
+        }
+      ]
+    }
+  ]
+}
