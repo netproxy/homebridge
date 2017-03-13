@@ -1,0 +1,44 @@
+headers log =====>M-SEARCH * HTTP/1.1
+headers log =====>MAN: "ssdp:discover"
+headers log =====>ST: wifi_bulb
+headers log =====>
+no did or loc found!
+headers log =====>HTTP/1.1 200 OK
+headers log =====>Cache-Control: max-age=3600
+headers log =====>Date:
+headers log =====>Ext:
+headers log =====>Location: yeelight://192.168.124.12:55443
+headers log =====>Server: POSIX UPnP/1.0 YGLC/1
+headers log =====>id: 0x0000000003362c41
+headers log =====>model: color
+headers log =====>fw_ver: 48
+headers log =====>support: get_prop set_default set_power toggle set_bright start_cf stop_cf set_scene cron_add cron_get cron_del set_ct_abx set_rgb set_hsv set_adjust set_music set_name
+headers log =====>power: on
+headers log =====>bright: 22
+headers log =====>color_mode: 3
+headers log =====>ct: 4000
+headers log =====>rgb: 46591
+headers log =====>hue: 30
+headers log =====>sat: 48
+headers log =====>name:
+headers log =====>
+[3/13/2017, 3:58:55 PM] [yeelight] cached accessory: 0x0000000003362c41
+headers log =====>HTTP/1.1 200 OK
+headers log =====>Cache-Control: max-age=3600
+headers log =====>Date:
+headers log =====>Ext:
+headers log =====>Location: yeelight://192.168.124.12:55443
+headers log =====>Server: POSIX UPnP/1.0 YGLC/1
+headers log =====>id: 0x0000000003362c41
+headers log =====>model: color
+headers log =====>fw_ver: 48
+headers log =====>support: get_prop set_default set_power toggle set_bright start_cf stop_cf set_scene cron_add cron_get cron_del set_ct_abx set_rgb set_hsv set_adjust set_music set_name
+headers log =====>power: on
+headers log =====>bright: 22
+headers log =====>color_mode: 3
+headers log =====>ct: 4000
+headers log =====>rgb: 46591
+headers log =====>hue: 30
+headers log =====>sat: 48
+headers log =====>name:
+headers log =====>
