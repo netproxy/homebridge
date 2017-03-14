@@ -115,7 +115,7 @@ ZhimiAirpurifierV2.prototype = {
 	if (!found) {
 	    newAccessory.addService(airService, name);
 	    this.airAccessories.push(newAccessory);
-	    this.api.registerPlatformAccessories("homebridge-airpurifier", "airpurifier", [newAccessory]);
+	    this.api.registerPlatformAccessories("homebridge-airpurifier", "zhimiAirpurifierV2", [newAccessory]);
 	}
     },
 
@@ -138,7 +138,7 @@ ZhimiAirpurifierV2.prototype = {
 	if (1) {
 	    accessory.updateReachability(false);	    
 	} else {
-	    this.api.unregisterPlatformAccessories("homebridge-airpurifier", "airpurifier", [accessory]);
+	    this.api.unregisterPlatformAccessories("homebridge-airpurifier", "zhimiAirpurifierV2", [accessory]);
 
 	    var idx = this.airAccessories.indexOf(accessory);
 	    if (idx > -1) {
