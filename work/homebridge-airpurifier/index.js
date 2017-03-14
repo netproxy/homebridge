@@ -9,10 +9,10 @@ module.exports = function(homebridge) {
     Characteristic = homebridge.hap.Characteristic;
     UUIDGen = homebridge.hap.uuid;
 
-    homebridge.registerPlatform("homebridge-airpurifier", "airpurifier", ZhimiAirpurifierV2, true);    
+    homebridge.registerPlatform("homebridge-airpurifier", "zhimiAirpurifierV2", ZhimiAirpurifierV2, true);    
 }
 
-function AirDevice(log, config, api) {
+function ZhimiAirpurifierV2(log, config, api) {
     log("ZhimiAirpurifierV2 Init");
     
     this.log = log;
@@ -27,14 +27,14 @@ function AirDevice(log, config, api) {
 	this.api.on('didFinishLaunching', function() {
 	    platform.log("DidFinishLaunching");
 	    
-            platform.airAgent = new ZhimiAirpurifierV2.AirAgent("0.0.0.0", platform);
+            platform.airAgent = new zhimiAirpurifierV2.AirAgent("0.0.0.0", platform);
             platform.airAgent.startDisc();
 	    
 	}.bind(this));
     }
 }
 
-AirDevice.prototype = {
+ZhimiAirpurifierV2.prototype = {
 
     onDevFound: function(dev) {
 	var that = this;
