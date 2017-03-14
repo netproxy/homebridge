@@ -176,15 +176,15 @@ exports.AirAgent = function(ip, handler){
 	    return null;
     }.bind(this);
 
-    this.delDevice = function(did) {
-	delete this.devices[did];
+     this.delDevice = function(did) {
+	  delete this.devices[did];
     }.bind(this);
     
-    this.discSock.bind(PORT, function() {
-	console.log("add to multicast group");
-	this.discSock.setBroadcast(true);
-	this.discSock.setMulticastTTL(128);
-	this.discSock.addMembership(MCAST_ADDR);
+     this.discSock.bind(PORT, function() {
+	  console.log("add to multicast group");
+	  this.discSock.setBroadcast(true);
+	  this.discSock.setMulticastTTL(128);
+	  this.discSock.addMembership(MCAST_ADDR);
     }.bind(this));
     
     this.discSock.on('listening', function() {

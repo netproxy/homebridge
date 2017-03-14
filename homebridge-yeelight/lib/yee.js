@@ -205,7 +205,7 @@ exports.YeeAgent = function(ip, handler){
 	headers = message.toString().split("\r\n");
 	
 	for (i = 0; i < headers.length; i++) {
-	    if (headers[i].indexOf("id:") >= 0)
+       if (headers[i].indexOf("id:") >= 0)
 		did = headers[i].slice(4);
 	    if (headers[i].indexOf("Location:") >= 0)
 		loc = headers[i].slice(10);

@@ -100,10 +100,11 @@ MiioDevice.prototype._sendProbe = function (client) {
 }
 
 MiioDevice.prototype.probe = function (callback) {
+    console.log("probe prototype");
     var thiz = this;
     var retry = MiioDevice.RETRY ,wait = MiioDevice.TIMEOUT_MS;
     var client = dgram.createSocket('udp4');
-
+     
     var timeoutFunc = function () {
         if(retry == 0){
             callback(MiioDevice.CODE_TIMEOUT);
@@ -117,8 +118,9 @@ MiioDevice.prototype.probe = function (callback) {
     };
 
     var timeout = setTimeout(timeoutFunc ,wait);
+    console.log("thiz._sendProbe(client);");
     thiz._sendProbe(client);
-
+     
     client.on("message",function (bufferMessage,rinfo) {
         //console.log(rinfo); address
         var res = miio.hdecrypt(bufferMessage);
@@ -134,6 +136,11 @@ MiioDevice.prototype.probe = function (callback) {
 
 MiioDevice.prototype._sendRpc = function (client,sDid,ts,token,json) {
     var req = miio.encrypt(sDid,ts,token,json);
+    console.log("=================================================");
+    console.log("it's crroect token:" + token);
+    console.log("_sendRpc encrypt" + req);
+    console.log(this.ipAddr4);
+    console.log("=================================================");    
     client.send(req, 0, req.length, 54321, this.ipAddr4, function(err, bytes) {
         if (err){
             console.log("udp send error");
@@ -143,31 +150,32 @@ MiioDevice.prototype._sendRpc = function (client,sDid,ts,token,json) {
 };
 
 MiioDevice.prototype.rpc = function (json, callback) {
-    // console.log("RPC: " + json);
+     console.log("RPC: " + json);
 
     var thiz = this;
 
     var retry = MiioDevice.RETRY ,wait = MiioDevice.TIMEOUT_MS;
     var client = dgram.createSocket('udp4');
-
+    
     var timeoutFunc = function () {
         if(retry == 0){
             callback(MiioDevice.CODE_TIMEOUT);
             client.close();
         }else{
             retry--;
-            console.log("rpc retry");
+            console.log("rpc retry is't herer =====================");
             thiz._sendRpc(client,thiz.sDid,thiz.ts,thiz.token,json);
             timeout = setTimeout(timeoutFunc,wait)
         }
     };
 
     var timeout;
-
+    console.log("needProbe:"+thiz.needProbe());
     if(thiz.needProbe()){
-
+        
         thiz.probe(function (code,res) {
             if(code == 0){
+                console.log("return code 0");
                 timeout =  setTimeout(timeoutFunc ,wait);
                 thiz._sendRpc(client,thiz.sDid,thiz.ts,thiz.token,json);
             }else{

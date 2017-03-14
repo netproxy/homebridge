@@ -8,22 +8,20 @@ module.exports = function(homebridge) {
     Characteristic = homebridge.hap.Characteristic;
     UUIDGen = homebridge.hap.uuid;
     
-    homebridge.registerPlatform("homebridge-airpurifier", "airpurifier", AirPlatform, true);    
+    homebridge.registerPlatform("homebridge-airpurifier", "airpurifier", ZhimiAirpurifierV2, true);    
 }
 
-function AirPlatform(log, config, api) {
+function ZhimiAirpurifierV2(log, config, api) {
     log("AirpurifierPlatform Init");
     
     this.log = log;
     this.config = config;
     this.airAccessories = [];
-    
     var platform = this;
-    
     if (api) {
-	this.api = api;
+    this.api = api;
 
-	this.api.on('didFinishLaunching', function() {
+    this.api.on('didFinishLaunching', function() {
 	    platform.log("DidFinishLaunching");
 	    
             platform.airAgent = new airPurifier.AirAgent("0.0.0.0", platform);
@@ -33,28 +31,28 @@ function AirPlatform(log, config, api) {
     }
 }
 
-AirPlatform.prototype = {
+ZhimiAirpurifierV2.prototype = {
 
     onDevFound: function(dev) {
-	var that = this;
-	var uuid;
-	var found = 0;
-	var newAccessory = null;
-	var lightbulbService = null;
-        var name;
-	
-	for (var index in this.airAccessories) {
-	    var accessory = this.airAccessories[index];
-	    if (accessory.context.did == dev.did) {
-		newAccessory = accessory;
-		found = 1;
-		break;
-	    }
-	}
+    var that = this;
+    var uuid;
+    var found = 0;
+    var newAccessory = null;
+    var airService = null;
+    var name;
+
+    for (var index in this.airAccessories) {
+        var accessory = this.airAccessories[index];
+        if (accessory.context.did == dev.did) {
+            newAccessory = accessory;
+            found = 1;
+            break;
+        }
+    }
 
 	if (found) {
 	    this.log("cached accessory: " + newAccessory.context.did);
-	    lightbulbService = newAccessory.getService(Service.Lightbulb);
+	    airService = newAccessory.getService(Service.Lightbulb);
 	} else {
 	    uuid = UUIDGen.generate(dev.did);
             name = dev.did.substring(dev.did.length-6);
@@ -62,47 +60,47 @@ AirPlatform.prototype = {
 	    newAccessory = new Accessory(name, uuid);
 	    newAccessory.context.did = dev.did;
 	    newAccessory.context.model = dev.model;
-	    lightbulbService = new Service.Lightbulb(name);	    
+	    airService = new Service.Lightbulb(name);	    
 	}
 	
 	dev.ctx = newAccessory;
 	
-	lightbulbService
+	airService
 	    .getCharacteristic(Characteristic.On)
 	    .on('set', function(value, callback) { that.exeCmd(dev.did, "power", value, callback);})
 	    .value = dev.power;
 
 	if (!found) {
-	    lightbulbService
+	    airService
 		.addCharacteristic(Characteristic.Brightness)
 		.on('set', function(value, callback) { that.exeCmd(dev.did, "brightness", value, callback);})
 		.value = dev.bright;
 
 	    if (dev.model == "color" || dev.model == "stripe") {
-		lightbulbService
+		airService
 		    .addCharacteristic(Characteristic.Hue)
 		    .on('set', function(value, callback) { that.exeCmd(dev.did, "hue", value, callback);})
 	            .value = dev.hue;
 
-		lightbulbService
+		airService
 		    .addCharacteristic(Characteristic.Saturation)
 		    .on('set', function(value, callback) { that.exeCmd(dev.did, "saturation", value, callback);})
 	            .value = dev.sat;
 	    }
 	} else {
-	    lightbulbService
+	    airService
 		.getCharacteristic(Characteristic.Brightness)
 		.on('set', function(value, callback) { that.exeCmd(dev.did, "brightness", value, callback);})
 		.value = dev.bright;
 
 	    if (dev.model == "color" || dev.model == "stripe") {
-		lightbulbService
+		airService
 		    .getCharacteristic(Characteristic.Hue)
 		    .on('set', function(value, callback) { that.exeCmd(dev.did, "hue", value, callback);})
 	            .value = dev.hue;
 		
 
-		lightbulbService
+		airService
 		    .getCharacteristic(Characteristic.Saturation)
 		    .on('set', function(value, callback) { that.exeCmd(dev.did, "saturation", value, callback);})
 	            .value = dev.sat;
@@ -112,7 +110,7 @@ AirPlatform.prototype = {
 	newAccessory.reachable = true;
 
 	if (!found) {
-	    newAccessory.addService(lightbulbService, name);
+	    newAccessory.addService(airService, name);
 	    this.airAccessories.push(newAccessory);
 	    this.api.registerPlatformAccessories("homebridge-airpurifier", "airpurifier", [newAccessory]);
 	}
@@ -151,18 +149,18 @@ AirPlatform.prototype = {
     onDevPropChange: function(dev, prop, val) {
         var accessory = dev.ctx;
         var character;
-        var lightbulbService = accessory.getService(Service.Lightbulb);
+        var airService = accessory.getService(Service.Lightbulb);
 
         this.log("update accessory prop: " + prop + "value: " + val);
 
         if (prop == "power") {
-            character = lightbulbService.getCharacteristic(Characteristic.On)
+            character = airService.getCharacteristic(Characteristic.On)
         } else if (prop == "bright") {
-            character = lightbulbService.getCharacteristic(Characteristic.Brightness)
+            character = airService.getCharacteristic(Characteristic.Brightness)
         } else if (prop == "sat") {
-            character = lightbulbService.getCharacteristic(Characteristic.Saturation)
+            character = airService.getCharacteristic(Characteristic.Saturation)
         } else if (prop == "hue") {
-            character = lightbulbService.getCharacteristic(Characteristic.Hue)
+            character = airService.getCharacteristic(Characteristic.Hue)
         } else {
             return;
         }

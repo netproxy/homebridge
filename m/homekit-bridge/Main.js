@@ -31,7 +31,7 @@ MiwifiFeature.uuidCmd = "echo  4355d2ed-9cb6-4a53-b422-7a96614932b3 ";
 */
 
 // Initialize our storage system
-HAP.init("hap-mapping");
+HAP.init("");
 
 var DISPLAY_CONF = {
     "mac": "",

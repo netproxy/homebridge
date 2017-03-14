@@ -1,0 +1,48 @@
+{
+  "name": "homebridge-aqara",
+  "version": "0.1.8",
+  "description": "Aqara plugin for homebridge: https://github.com/nfarina/homebridge",
+  "license": "ISC",
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snOOrz/homebridge-aqara.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snOOrz/homebridge-aqara/issues"
+  },
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.4.1"
+  },
+  "gitHead": "591de35833cdfeae3a3336e5db763a7194a84a30",
+  "homepage": "https://github.com/snOOrz/homebridge-aqara#readme",
+  "_id": "homebridge-aqara@0.1.8",
+  "scripts": {},
+  "_shasum": "6e8535de5c335cf5a8ddec6f4d0cb7e5202da70b",
+  "_from": "homebridge-aqara@latest",
+  "_npmVersion": "4.0.5",
+  "_nodeVersion": "7.4.0",
+  "_npmUser": {
+    "name": "snoorz",
+    "email": "petersun@live.com"
+  },
+  "dist": {
+    "shasum": "6e8535de5c335cf5a8ddec6f4d0cb7e5202da70b",
+    "tarball": "https://registry.npmjs.org/homebridge-aqara/-/homebridge-aqara-0.1.8.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "snoorz",
+      "email": "petersun@live.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/homebridge-aqara-0.1.8.tgz_1484723859658_0.8911269239615649"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/homebridge-aqara/-/homebridge-aqara-0.1.8.tgz"
+}
