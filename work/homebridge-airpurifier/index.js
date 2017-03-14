@@ -12,7 +12,7 @@ module.exports = function(homebridge) {
     homebridge.registerPlatform("homebridge-airpurifier", "airpurifier", ZhimiAirpurifierV2, true);    
 }
 
-function ZhimiAirpurifierV2(log, config, api) {
+function AirDevice(log, config, api) {
     log("ZhimiAirpurifierV2 Init");
     
     this.log = log;
@@ -34,7 +34,7 @@ function ZhimiAirpurifierV2(log, config, api) {
     }
 }
 
-ZhimiAirpurifierV2.prototype = {
+AirDevice.prototype = {
 
     onDevFound: function(dev) {
 	var that = this;
