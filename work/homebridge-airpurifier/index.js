@@ -1,4 +1,5 @@
-var airPurifier = require('./lib/airpurifier.js');
+var zhimiAirpurifierV2 = require('./lib/airpurifier.js');
+var mistat = require('../lib/mistat');
 var Service, Characteristic, Accessory, UUIDGen;
 
 module.exports = function(homebridge) {
@@ -7,12 +8,12 @@ module.exports = function(homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
     UUIDGen = homebridge.hap.uuid;
-    
-    homebridge.registerPlatform("homebridge-airpurifier", "airpurifier", AirPlatform, true);    
+
+    homebridge.registerPlatform("homebridge-airpurifier", "airpurifier", ZhimiAirpurifierV2, true);    
 }
 
-function AirPlatform(log, config, api) {
-    log("AirpurifierPlatform Init");
+function ZhimiAirpurifierV2(log, config, api) {
+    log("ZhimiAirpurifierV2 Init");
     
     this.log = log;
     this.config = config;
@@ -26,14 +27,14 @@ function AirPlatform(log, config, api) {
 	this.api.on('didFinishLaunching', function() {
 	    platform.log("DidFinishLaunching");
 	    
-            platform.airAgent = new airPurifier.AirAgent("0.0.0.0", platform);
+            platform.airAgent = new ZhimiAirpurifierV2.AirAgent("0.0.0.0", platform);
             platform.airAgent.startDisc();
 	    
 	}.bind(this));
     }
 }
 
-AirPlatform.prototype = {
+ZhimiAirpurifierV2.prototype = {
 
     onDevFound: function(dev) {
 	var that = this;
