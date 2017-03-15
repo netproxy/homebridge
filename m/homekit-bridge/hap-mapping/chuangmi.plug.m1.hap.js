@@ -45,7 +45,7 @@ ChuangmiPlugM1.prototype.GetOn = function(callback) {
     var method_args = ['power'];
 
     console.log("GetOn => " + method_name + ": " + method_args);
-    mistat(this.device.sDid, this.device.routerMac, this.device.sModel, 'get', 'On', -1e);
+    mistat(this.device.sDid, this.device.routerMac, this.device.sModel, 'get', 'On', 1);
 
     this.device.homekit_execute_get(method_name, method_args, function (code, jres) {
         if (jres && jres.result && jres.result[0]) {

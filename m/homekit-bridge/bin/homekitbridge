@@ -5,4 +5,10 @@
 
 process.title = 'homekitbridge';
 
-#todo
+// Find the HomeBridge lib
+var path = require('path');
+var fs = require('fs');
+var lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
+console.log(lib);
+// Run HomeBridge
+//require(lib + '/cli')();

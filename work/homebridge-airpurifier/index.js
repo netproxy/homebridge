@@ -1,4 +1,5 @@
-var airPurifier = require('./lib/airpurifier.js');
+var zhimiAirpurifierV2 = require('./lib/airpurifier.js');
+var mistat = require('../lib/mistat');
 var Service, Characteristic, Accessory, UUIDGen;
 
 module.exports = function(homebridge) {
@@ -7,12 +8,21 @@ module.exports = function(homebridge) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
     UUIDGen = homebridge.hap.uuid;
+<<<<<<< HEAD
     
     homebridge.registerPlatform("homebridge-airpurifier", "airpurifier", ZhimiAirpurifierV2, true);    
 }
 
 function ZhimiAirpurifierV2(log, config, api) {
     log("AirpurifierPlatform Init");
+=======
+
+    homebridge.registerPlatform("homebridge-airpurifier", "zhimiAirpurifierV2", ZhimiAirpurifierV2, true);    
+}
+
+function ZhimiAirpurifierV2(log, config, api) {
+    log("ZhimiAirpurifierV2 Init");
+>>>>>>> 6b119ee7424ce549a45b0066855d5ae27860faa0
     
     this.log = log;
     this.config = config;
@@ -24,7 +34,7 @@ function ZhimiAirpurifierV2(log, config, api) {
     this.api.on('didFinishLaunching', function() {
 	    platform.log("DidFinishLaunching");
 	    
-            platform.airAgent = new airPurifier.AirAgent("0.0.0.0", platform);
+            platform.airAgent = new zhimiAirpurifierV2.AirAgent("0.0.0.0", platform);
             platform.airAgent.startDisc();
 	    
 	}.bind(this));
@@ -34,6 +44,7 @@ function ZhimiAirpurifierV2(log, config, api) {
 ZhimiAirpurifierV2.prototype = {
 
     onDevFound: function(dev) {
+<<<<<<< HEAD
     var that = this;
     var uuid;
     var found = 0;
@@ -49,6 +60,23 @@ ZhimiAirpurifierV2.prototype = {
             break;
         }
     }
+=======
+	var that = this;
+	var uuid;
+	var found = 0;
+	var newAccessory = null;
+	var airService = null;
+        var name;
+	
+	for (var index in this.airAccessories) {
+	    var accessory = this.airAccessories[index];
+	    if (accessory.context.did == dev.did) {
+		newAccessory = accessory;
+		found = 1;
+		break;
+	    }
+	}
+>>>>>>> 6b119ee7424ce549a45b0066855d5ae27860faa0
 
 	if (found) {
 	    this.log("cached accessory: " + newAccessory.context.did);
@@ -112,7 +140,7 @@ ZhimiAirpurifierV2.prototype = {
 	if (!found) {
 	    newAccessory.addService(airService, name);
 	    this.airAccessories.push(newAccessory);
-	    this.api.registerPlatformAccessories("homebridge-airpurifier", "airpurifier", [newAccessory]);
+	    this.api.registerPlatformAccessories("homebridge-airpurifier", "zhimiAirpurifierV2", [newAccessory]);
 	}
     },
 
@@ -135,7 +163,7 @@ ZhimiAirpurifierV2.prototype = {
 	if (1) {
 	    accessory.updateReachability(false);	    
 	} else {
-	    this.api.unregisterPlatformAccessories("homebridge-airpurifier", "airpurifier", [accessory]);
+	    this.api.unregisterPlatformAccessories("homebridge-airpurifier", "zhimiAirpurifierV2", [accessory]);
 
 	    var idx = this.airAccessories.indexOf(accessory);
 	    if (idx > -1) {

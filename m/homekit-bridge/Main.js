@@ -31,7 +31,7 @@ MiwifiFeature.uuidCmd = "echo  4355d2ed-9cb6-4a53-b422-7a96614932b3 ";
 */
 
 // Initialize our storage system
-HAP.init("");
+HAP.init("/usr/local/lib/node_modules/m/homekit-bridge/hap-mapping");
 
 var DISPLAY_CONF = {
     "mac": "",
@@ -49,6 +49,7 @@ function writeDisplayConf() {
     if(lazyWrite){
         clearTimeout(lazyWrite);
     }
+    console.log("writeDisplayConf()");
     lazyWrite = setTimeout(function () {
 
         fs.writeFile("/var/run/info", JSON.stringify( DISPLAY_CONF ), function(err) {
@@ -63,8 +64,9 @@ function writeDisplayConf() {
 
 
 var miwifi = new MiwifiFeature({ handleInit:function () {
-
+    
     console.log("MiwifiFeature");
+    console.log("=======================================================================");
     DISPLAY_CONF.mac = miwifi.mac;
 
     var hashid = uuid.generate( miwifi.mac );
@@ -90,7 +92,7 @@ var miwifi = new MiwifiFeature({ handleInit:function () {
     miwifi.startReadLoop();
 },//end handleInit
     handleOnline:function (miioDev) {
-
+        console.log("is coming =================================================================");
         DISPLAY_CONF.devCount = miwifi.userDeviceListLength;
         writeDisplayConf();
         //make correct homekit dev
@@ -157,8 +159,12 @@ var miwifi = new MiwifiFeature({ handleInit:function () {
 
     }
 });
+
+
+
 console.log("miwifi.init() start");
-miwifi.init();
+
+miwifi.manualsetDevice('{"oname":"chuangmi-plug-m1_miio52760671","oname":"zhimi-airpurifier-m1_miio47120444"}');
 console.log("miwifi.init() end");
 
 

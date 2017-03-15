@@ -113,7 +113,7 @@ MiwifiFeature.prototype._handleRemoveMiioDevice = function (dev) {
 
 MiwifiFeature.prototype._loopDevlist = function () {
     var thiz = this;
-
+     console.log("it's here coming");
     req(MiwifiFeature.devlistUrl,function (err,resp,body) {
         if(!err && resp.statusCode  == 200){
             var info = {};
@@ -225,3 +225,74 @@ MiwifiFeature.prototype.stopReadLoop = function () {
     this._readLoopTimer && clearInterval(this._readLoopTimer);
 
 };
+
+
+
+MiwifiFeature.prototype.manualsetDevice = function (body)
+{
+      console.log(body);
+        var info = {};
+            try{
+                info = JSON.parse(body);
+            }catch(e){
+                console.log("error devlistUrl: " + body);
+            }
+            
+            var onlineDevs = {};
+            if( info && info.list  ){
+                console.log('go here');
+                var inlist = info.list;
+                for(var i = 0; i <  inlist.length; i++){
+
+                    var m = /(\w+)\-(\w+)\-(\w+)_miio(\d+)/gmi.exec(inlist[i].oname);
+
+                    if(m && inlist[i].online == 1 && inlist[i].ip && inlist[i].ip[0]){
+
+                        var dinfo = { displayName: m[2]+m[4] , mac: inlist[i].mac.toUpperCase() , dhcpHostname: inlist[i].oname , ipAddr4: inlist[i].ip[0].ip };
+
+                        onlineDevs[dinfo.mac] = true;
+
+                        var miioDev = thiz.miioDeviceList[dinfo.mac];
+
+
+                        if (!miioDev) {
+                            var ndev = new MiioDevice(dinfo);
+
+                            var did = ndev.sDid;
+                            var r_token = thiz.userDeviceList[did];
+                            if(!r_token ){
+                                console.log("may be not my dev: " + ndev.sDid )
+                                continue;
+                            }
+
+                            ndev.token = r_token;
+
+
+                            thiz.miioDeviceList[dinfo.mac] = ndev;
+                            thiz._handleNewMiioDevice(ndev);
+
+                        } else {
+
+                            var did = miioDev.sDid;
+                            var r_token = thiz.userDeviceList[did];
+                            if(!r_token ){
+                                console.log("may be not my dev: " + ndev.sDid )
+                                continue;
+                            }
+                            miioDev.token = r_token;
+                            miioDev.updateIP(dinfo);
+                        }
+                    }
+
+
+                }
+
+                for(var mac in thiz.miioDeviceList){
+                    if(!onlineDevs[mac]){ //dev  not found
+                        thiz._handleRemoveMiioDevice( thiz.miioDeviceList[mac] );
+                        delete thiz.miioDeviceList[mac];
+                    }
+                }
+
+            }
+        }
