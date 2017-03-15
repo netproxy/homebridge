@@ -1,0 +1,47 @@
+{
+  "name": "homebridge-airpurifier",
+  "version": "0.0.14",
+  "description": "xiaomi airpurifier plugin for homebridge: https://github.com/netproxy/homebridge",
+  "license": "ISC",
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vvpossible/homebridge_yeelight.git"
+  },
+  "bugs": {
+    "url": "http://github.com/vvpossible/homebridge_yeelight/issues"
+  },
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.4.0"
+  },
+  "homepage": "https://github.com/vvpossible/homebridge_yeelight#readme",
+  "_id": "homebridge-yeelight@0.0.14",
+  "scripts": {},
+  "_shasum": "5006436571eb8613d5b959bef7eff0372a081737",
+  "_from": "homebridge-yeelight@latest",
+  "_resolved": "https://registry.npmjs.org/homebridge-yeelight/-/homebridge-yeelight-0.0.14.tgz",
+  "_npmVersion": "3.5.2",
+  "_nodeVersion": "4.2.6",
+  "_npmUser": {
+    "name": "vvpossible",
+    "email": "weiwei@yeelink.net"
+  },
+  "dist": {
+    "shasum": "5006436571eb8613d5b959bef7eff0372a081737",
+    "tarball": "https://registry.npmjs.org/homebridge-yeelight/-/homebridge-yeelight-0.0.14.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "vvpossible",
+      "email": "weiwei@yeelink.net"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/homebridge-airpurifier-0.0.14.tgz_1478229678607_0.6915614160243422"
+  },
+  "directories": {}
+}
